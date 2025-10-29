@@ -1,27 +1,55 @@
 import Header from './Header'
 import './App.css'
 import Products from './Products'
+import { useState ,useEffect} from 'react'
+
+
 
 function App() {
+
+const [products,setproducts]=useState([])
+
+//useeffect syntax
+useEffect(()=>{
+ fetch('https://fakestoreapi.com/products')
+  .then(response => response.json())
+  .then(data => setproducts(data));
+},[])
+
+
+
+
+
  
+ 
+
+  //handle count
+
 
   return (
     <>
     <Header/>
     <br />
-    <div style={{display:'flex', gap:'20px', flexWrap:'wrap'} }>
-    <Products name="bag"  image="https://res.cloudinary.com/dhdepk5ib/image/upload/v1757696461/samples/ecommerce/leather-bag-gray.jpg" 
-    price="10000"
- />
-    <Products name="Watch"  image="https://res.cloudinary.com/dhdepk5ib/image/upload/v1757696459/samples/ecommerce/analog-classic.jpg" 
-    price="1000" />
-  
- <Products name="Speaker"  image="https://res.cloudinary.com/dhdepk5ib/image/upload/v1757698472/Gemini_Generated_Image_z6124hz6124hz612_3_atjkpb.png" 
-    price="2000" />
-     
-     
+{
 
+products.map(function(p){
+  return <div key={p.id}>
+    <img height={100} width={100} src={p.image} alt="" />
+    <p>{p.title}</p>
+    <p>{p.price}</p>
+  </div>
+})
+
+}
+
+
+
+
+
+    <div style={{display:'flex', gap:'20px', flexWrap:'wrap'} }>
+    
     </div>
+
    
      
     </>
