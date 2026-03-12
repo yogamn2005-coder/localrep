@@ -1,1 +1,1 @@
-## SIMPLE REACT PROJECT
+<p>The github is good</p>
